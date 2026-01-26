@@ -1,5 +1,7 @@
 # Marge-bot Helm Chart
 
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/marge-bot-helm)](https://artifacthub.io/packages/search?repo=marge-bot-helm)
+
 Marge-bot is a merge-bot for GitLab. This repository contains the Helm chart for deploying Marge-bot on Kubernetes.
 
 With this chart, you can configure marge-bot command line arguments and/or a config file.
