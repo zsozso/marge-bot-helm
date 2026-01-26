@@ -76,11 +76,19 @@ spec:
           livenessProbe:
             exec:
               {{- toYaml .Values.livenessProbe.exec | nindent 14 }}
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds | default 30 }}
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds | default 10 }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds | default 5 }}
+            failureThreshold: {{ .Values.livenessProbe.failureThreshold | default 3 }}
           {{- end }}
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             exec:
               {{- toYaml .Values.readinessProbe.exec | nindent 14 }}
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds | default 10 }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds | default 5 }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds | default 3 }}
+            failureThreshold: {{ .Values.readinessProbe.failureThreshold | default 3 }}
           {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
