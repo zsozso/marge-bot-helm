@@ -2,7 +2,7 @@
 repositoryID: 
 name: marge-bot-helm
 displayName: Marge Bot Helm Charts
-url: https://github.com/zsozso/marge-bot-helm
+url: https://zsozso.github.io/marge-bot-helm
 owners:
   - name: zsozso
     email: zsozso@noreply.com
