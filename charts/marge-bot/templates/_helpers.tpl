@@ -51,3 +51,20 @@ app.kubernetes.io/name: {{ include "marge.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
+{{/*
+Get the secret name.
+*/}}
+{{- define "marge.secretName" -}}
+{{- if .Values.secret.existingSecret -}}
+{{- .Values.secret.existingSecret -}}
+{{- else if .Values.secret.externalSecret.enabled -}}
+{{- if .Values.secret.externalSecret.target -}}
+{{- .Values.secret.externalSecret.target.name | default (printf "%s-secret" (include "marge.fullname" .)) -}}
+{{- else -}}
+{{- printf "%s-secret" (include "marge.fullname" .) -}}
+{{- end -}}
+{{- else -}}
+{{- printf "%s-secret" (include "marge.fullname" .) -}}
+{{- end -}}
+{{- end -}}
+
