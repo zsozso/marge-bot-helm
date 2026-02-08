@@ -36,17 +36,17 @@ spec:
             - name: MARGE_GITLAB_URL
               valueFrom:
                 secretKeyRef:
-                  name: {{ if .Values.secret.existingSecret }}{{ .Values.secret.existingSecret }}{{ else if .Values.secret.externalSecret.enabled }}{{ if .Values.secret.externalSecret.target }}{{ .Values.secret.externalSecret.target.name | default (printf "%s-secret" (include "marge.fullname" .)) }}{{ else }}{{ include "marge.fullname" . }}-secret{{ end }}{{ else }}{{ include "marge.fullname" . }}-secret{{ end }}
+                  name: {{ include "marge.secretName" . }}
                   key: {{ .Values.secret.keys.gitlabUrl }}
             - name: MARGE_SSH_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ if .Values.secret.existingSecret }}{{ .Values.secret.existingSecret }}{{ else if .Values.secret.externalSecret.enabled }}{{ if .Values.secret.externalSecret.target }}{{ .Values.secret.externalSecret.target.name | default (printf "%s-secret" (include "marge.fullname" .)) }}{{ else }}{{ include "marge.fullname" . }}-secret{{ end }}{{ else }}{{ include "marge.fullname" . }}-secret{{ end }}
+                  name: {{ include "marge.secretName" . }}
                   key: {{ .Values.secret.keys.sshKey }}
             - name: MARGE_AUTH_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ if .Values.secret.existingSecret }}{{ .Values.secret.existingSecret }}{{ else if .Values.secret.externalSecret.enabled }}{{ if .Values.secret.externalSecret.target }}{{ .Values.secret.externalSecret.target.name | default (printf "%s-secret" (include "marge.fullname" .)) }}{{ else }}{{ include "marge.fullname" . }}-secret{{ end }}{{ else }}{{ include "marge.fullname" . }}-secret{{ end }}
+                  name: {{ include "marge.secretName" . }}
                   key: {{ .Values.secret.keys.authToken }}
             {{- with .Values.extraEnv }}
             {{- toYaml . | nindent 12 }}
