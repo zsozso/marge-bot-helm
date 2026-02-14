@@ -3,6 +3,26 @@ entries:
   marge-bot:
   - apiVersion: v2
     appVersion: 0.16.0
+    created: "2026-02-14T11:58:45.368876752Z"
+    description: Marge-bot is a merge-bot for GitLab
+    digest: 16a25e8d92e552bfc4859271651946a784dce3a5bbaf87c82627f23a9e4e5be4
+    home: https://github.com/hiboxsystems/marge-bot
+    icon: https://upload.wikimedia.org/wikipedia/en/0/0b/Marge_Simpson.png
+    keywords:
+    - merge
+    - marge
+    - bot
+    - gitlab
+    maintainers:
+    - name: zsozso
+      url: https://github.com/zsozso/marge-bot-helm
+    name: marge-bot
+    type: application
+    urls:
+    - https://github.com/zsozso/marge-bot-helm/releases/download/marge-bot-1.3.5/marge-bot-1.3.5.tgz
+    version: 1.3.5
+  - apiVersion: v2
+    appVersion: 0.16.0
     created: "2026-02-08T12:33:01.409926781Z"
     description: Marge-bot is a merge-bot for GitLab
     digest: 58d431b437131be9eb58009774d55a04f7305d11d569c724c3c989a8b9dd84e1
@@ -101,4 +121,4 @@ entries:
     urls:
     - https://github.com/zsozso/marge-bot-helm/releases/download/marge-bot-1.2.0/marge-bot-1.2.0.tgz
     version: 1.2.0
-generated: "2026-02-08T12:33:01.409949143Z"
+generated: "2026-02-14T11:58:45.368906208Z"
