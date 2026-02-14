@@ -60,6 +60,14 @@ extraEnv: []
   #       name: marge-bot-secret
   #       key: ssh-key
 
+# Custom CA certificate content
+customCaCert: ""
+existingCustomCaCert: ""
+
+# Paths for SSH key and auth token files when using extraVolumes
+margeSshKeyFile: ""
+margeAuthTokenFile: ""
+
 # marge-bot config file content
 config: ""
 # config: |-

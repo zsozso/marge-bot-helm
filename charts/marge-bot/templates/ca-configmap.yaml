@@ -1,0 +1,11 @@
+{{- if .Values.customCaCert }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: marge-bot-custom-ca
+  labels:
+    {{- include "marge.labels" . | nindent 4 }}
+data:
+  marge-custom-ca.crt: |-
+{{ .Values.customCaCert | indent 4 }}
+{{- end }}

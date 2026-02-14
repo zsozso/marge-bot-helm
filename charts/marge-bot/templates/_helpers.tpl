@@ -68,3 +68,14 @@ Get the secret name.
 {{- end -}}
 {{- end -}}
 
+{{/*
+Determine if the chart should manage the secret.
+Returns "true" if secret is managed by the chart (existingSecret, externalSecret, or inline secret values).
+When not managed, secrets are expected to be provided externally (e.g. via CSI).
+*/}}
+{{- define "marge.manageSecret" -}}
+{{- if or .Values.secret.existingSecret .Values.secret.externalSecret.enabled .Values.secret.sshKey .Values.secret.authToken -}}
+true
+{{- end -}}
+{{- end -}}
+

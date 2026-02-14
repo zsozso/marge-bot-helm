@@ -1,3 +1,4 @@
+{{- include "marge.validate" . -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -33,6 +34,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            {{- if include "marge.manageSecret" . }}
             - name: MARGE_GITLAB_URL
               valueFrom:
                 secretKeyRef:
@@ -48,6 +50,19 @@ spec:
                 secretKeyRef:
                   name: {{ include "marge.secretName" . }}
                   key: {{ .Values.secret.keys.authToken }}
+            {{- else }}
+            - name: MARGE_GITLAB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "marge.fullname" . }}-config
+                  key: gitlab-url
+            {{- if and .Values.extraVolumes .Values.extraVolumeMounts }}
+            - name: MARGE_SSH_KEY_FILE
+              value: {{ .Values.margeSshKeyFile | default "/mnt/marge-bot-secret/ssh-key" }}
+            - name: MARGE_AUTH_TOKEN_FILE
+              value: {{ .Values.margeAuthTokenFile | default "/mnt/marge-bot-secret/auth-token" }}
+            {{- end }}
+            {{- end }}
             {{- with .Values.extraEnv }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
